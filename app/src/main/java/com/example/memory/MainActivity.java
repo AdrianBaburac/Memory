@@ -1,7 +1,10 @@
 package com.example.memory;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     int brojSlike =  1;
 
-    int potez = 0;
+    int potez = 1;
 
     int bodIgraca= 0, bodRacunala = 0;
     @Override
@@ -57,10 +60,11 @@ public class MainActivity extends AppCompatActivity {
         q9.setTag("8");
         q10.setTag("9");
         q11.setTag("10");
-        q12.setTag("011");
+        q12.setTag("11");
 
         prednjaStranaKarata();
         Collections.shuffle(Arrays.asList(arraySlika));
+        tv_p1.setTextColor(Color.WHITE);
         tv_p2.setTextColor(Color.GRAY);
 
         q1.setOnClickListener(new View.OnClickListener(){
@@ -178,10 +182,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     if(brojSlike == 1) {
+
         prvaSlika = arraySlika[slika];
 
         if (prvaSlika > 6) {
             prvaSlika = prvaSlika - 6;
+            System.out.println(prvaSlika);
         }
         brojSlike = 2;
         izabranaSlika1 = slika;
@@ -273,10 +279,10 @@ public class MainActivity extends AppCompatActivity {
             }
             if(potez== 1){
                 bodIgraca++;
-                tv_p1.setText("P1: " +bodIgraca);
+                tv_p1.setText("Igrac 1: " +bodIgraca);
             } else if(potez == 2){
                 bodRacunala++;
-                tv_p2.setText("P2: " + bodRacunala);
+                tv_p2.setText("Igrac 2: " + bodRacunala);
             }
 
         }
@@ -296,27 +302,76 @@ public class MainActivity extends AppCompatActivity {
             if(potez == 1){
                 potez=2;
                 tv_p1.setTextColor(Color.GRAY);
-                tv_p2.setTextColor(Color.BLACK);
+                tv_p2.setTextColor(Color.WHITE);
             } else if( potez == 2){
                 potez = 1;
                 tv_p2.setTextColor(Color.GRAY);
-                tv_p1.setTextColor(Color.BLACK);
+                tv_p1.setTextColor(Color.WHITE);
             }
+        }
+        q1.setEnabled(true);
+        q2.setEnabled(true);
+        q3.setEnabled(true);
+        q4.setEnabled(true);
+        q5.setEnabled(true);
+        q6.setEnabled(true);
+        q7.setEnabled(true);
+        q8.setEnabled(true);
+        q9.setEnabled(true);
+        q10.setEnabled(true);
+        q11.setEnabled(true);
+        q12.setEnabled(true);
+
+        provjeriJeLiKraj();
+    }
+    private void provjeriJeLiKraj(){
+        if(q1.getVisibility() == View.INVISIBLE
+        && q2.getVisibility() == View.INVISIBLE
+        && q3.getVisibility() == View.INVISIBLE
+        && q4.getVisibility() == View.INVISIBLE
+        && q5.getVisibility() == View.INVISIBLE
+        && q6.getVisibility() == View.INVISIBLE
+        && q7.getVisibility() == View.INVISIBLE
+        && q8.getVisibility() == View.INVISIBLE
+        && q9.getVisibility() == View.INVISIBLE
+        && q10.getVisibility() == View.INVISIBLE
+        && q11.getVisibility() == View.INVISIBLE
+        && q12.getVisibility() == View.INVISIBLE
+        ){
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+            alertDialogBuilder.setMessage("GOTOVA IGRA:\nIgrac 1: " + bodIgraca + "\nIgrac 2: " + bodRacunala).setCancelable(false)
+                    .setPositiveButton("NEW", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }).setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
         }
     }
     private void prednjaStranaKarata(){
         slika1 = R.drawable.chicken;
-        slika2 = R.drawable.chicken2;
-        slika3 = R.drawable.cow;
-        slika4 = R.drawable.cow2;
-        slika5 = R.drawable.dog;
-        slika6 = R.drawable.dog2;
-        slika7 = R.drawable.duck;
-        slika8 = R.drawable.duck2;
-        slika9 = R.drawable.pig;
-        slika10 = R.drawable.pig2;
-        slika11 = R.drawable.sheep;
+        slika1 = R.drawable.chicken;
+        slika7 = R.drawable.chicken2;
+        slika2 = R.drawable.cow;
+        slika8 = R.drawable.cow2;
+        slika3 = R.drawable.dog;
+        slika9 = R.drawable.dog2;
+        slika4 = R.drawable.duck;
+        slika10 = R.drawable.duck2;
+        slika5 = R.drawable.pig;
+        slika11 = R.drawable.pig2;
+        slika6 = R.drawable.sheep;
         slika12 = R.drawable.sheep2;
+
     }
 
 }
