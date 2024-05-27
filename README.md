@@ -1,0 +1,2 @@
+HR : Memory igrica koju smo uvijek igrali kada smo bili klinci. Kao projekt za školu odlučio sam je razvitikako bih unaprijedio svoje vještine i usput prisjetio se svoga djetinjstva uz ovu predivnu igru. Korišten je Android Studio IDE uz Javu i Groovy Gradle.
+ENG : A memory game that we always played when we were kids. I decided to develop it as a school project in order to improve my skills and along the way remember my childhood with this wonderful game. Android Studio IDE was used along with Java and Groovy Gradle.
